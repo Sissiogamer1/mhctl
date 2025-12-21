@@ -1,0 +1,7 @@
+pomf.lain.la:
+    endpoint: "https://pomf.lain.la/upload.php"
+    max_size: "1073741824"
+
+uguu.se:
+    endpoint: "https://uguu.se/upload.php"
+    max_size: "134217728"

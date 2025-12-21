@@ -1,0 +1,13 @@
+[project]
+name = "mhctl"
+version = "0.0.0.1"
+dependencies = [
+    
+]
+requires-python = ">= 3.8"
+[project.optional-dependencies]
+function1 = []
+function2 = []
+
+[project.scripts]
+mhctl = "mhctl.cli:app"
