@@ -5,14 +5,14 @@ clipath = Path(__file__).parent.parent
 configpath = Path(clipath) / "config" / "providers.yml"
 
 content = parse(configpath)
-yml = content.to_dict()
+#yml = content.to_dict()
 
 def list_providers():
     print("func called")
     for contentkey in content.keys():
         print(contentkey)
 
-def provider_info(name: str):
+def provider_info2(name: str):
     for key, value, obj in content.walk_keys():
         print("Key:")
         print(key)
@@ -23,6 +23,7 @@ def provider_info(name: str):
         print("test")
         print(str(key))
 
+# REWRITE THIS!!!
 def provider_info(provider_name: str):
     for contentkey in content.keys():
         provider_str = str(contentkey)
@@ -33,3 +34,4 @@ def provider_info(provider_name: str):
             print(f"Provider name: {provider_name}")
             print(f"Endpoint: {o_endpoint}")
             print(f"Max upload filesize: {o_maxsize} bytes")
+            return provider_name, o_endpoint, o_maxsize
