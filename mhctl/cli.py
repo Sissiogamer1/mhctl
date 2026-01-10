@@ -18,7 +18,7 @@ for func_name in funcs_names:
 
 def version_callback(value: bool):
     if value:
-        typer.echo(f"Placeholder header\nVersion 0.0.0.3\nRelease date: XX/01/2026")
+        typer.echo(f"Placeholder header\nVersion 0.0.0.3\nRelease date: 11/01/2026")
         raise typer.Exit()
 
 @app.callback()
