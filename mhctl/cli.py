@@ -2,7 +2,7 @@ import typer
 from .core import settings # type: ignore
 import httpx
 
-__version__ = "0.0.0.2"
+__version__ = "0.0.1"
 
 app = typer.Typer(
     help="Help text placeholder"
@@ -18,7 +18,7 @@ for func_name in funcs_names:
 
 def version_callback(value: bool):
     if value:
-        typer.echo(f"Placeholder header\nVersion 0.0.0.3\nRelease date: 11/01/2026")
+        typer.echo(f"Placeholder header\nVersion 0.0.1\nRelease date: 20/01/2026")
         raise typer.Exit()
 
 @app.callback()
@@ -58,7 +58,7 @@ def upload(
         from .core.upload import upload_pomf
         response = upload_pomf(file, provider)
         typer.echo(response)
-        typer.echo(f"DEBUG:\n{response["success"]}\nFile name: {response["files"][0]["filename"]}\nURL: {response["files"][0]["url"]}")
+        typer.echo(f"DEBUG:\n{response["success"]}\nFile name: {response["files"][0]["filename"]}\nURL: {response["files"][0]["url"]}\nHASH: {response["files"][0]["hash"]}")
 
     except ValueError as e:
         typer.echo(e)
