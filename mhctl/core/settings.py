@@ -19,4 +19,4 @@ def provider_info(provider_name: str):
             print(f"Provider name: {provider_name}")
             print(f"Endpoint: {content["uguu.se"]["endpoint"]}")
             print(f"Max upload filesize: {content["uguu.se"]["max_size"]} bytes")
-            return provider_name, content["uguu.se"]["endpoint"], content["uguu.se"]["endpoint"]
+            return provider_name, content["uguu.se"]["endpoint"], content["uguu.se"]["max_size"]

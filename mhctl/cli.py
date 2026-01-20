@@ -42,14 +42,12 @@ def upload(
         try:
             from .runtime.internal import is_provider_supported
             provider_supported = is_provider_supported(provider)
-            print(provider_supported)
         except ValueError as e:
             typer.echo(e)
     elif provider is None:
         try:
             from .runtime.internal import get_default_provider
             provider = get_default_provider()
-            print(provider)
         except ValueError as e:
             typer.echo(e)
     if provider == "uguu.se":
