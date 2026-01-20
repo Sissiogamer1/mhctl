@@ -10,3 +10,11 @@ def is_provider_supported(provider: str):
         print("a")
         raise ValueError(f"{provider} is not supported by mhctl\nPlease try again with a different provider")
     return True
+
+def get_xxh3(f: str):
+    import xxhash
+    return xxhash.xxh3_64_hexdigest(f.read())
+
+def get_timestamp():
+    from datetime import datetime
+    return datetime.now()
