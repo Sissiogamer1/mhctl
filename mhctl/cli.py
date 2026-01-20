@@ -10,7 +10,7 @@ app = typer.Typer(
 settings_app = typer.Typer()
 app.add_typer(settings_app, name="settings")
 
-funcs_names = ["list_providers", "provider_info", "provider_info2"]
+funcs_names = ["list_providers", "provider_info"]
 
 for func_name in funcs_names:
     func = getattr(settings, func_name)
