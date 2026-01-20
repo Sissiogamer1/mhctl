@@ -38,8 +38,6 @@ def upload(
         file: str,
         provider: str = typer.Argument(None, help="Provider (default from config)"),
 ):
-    print(f"PROVIDER: {provider}")
-    print(f"FILE: {file}")
     if provider:
         try:
             from .runtime.internal import is_provider_supported
@@ -54,11 +52,11 @@ def upload(
             print(provider)
         except ValueError as e:
             typer.echo(e)
-    try:
-        from .core.upload import upload_pomf
-        response = upload_pomf(file, provider)
-        typer.echo(response)
-        typer.echo(f"DEBUG:\n{response["success"]}\nFile name: {response["files"][0]["filename"]}\nURL: {response["files"][0]["url"]}\nHASH: {response["files"][0]["hash"]}")
+    if provider == "uguu.se":
+        try:
+            from .core.upload import upload_pomf
+            response = upload_pomf(file, provider)
+            typer.echo(response)
 
-    except ValueError as e:
-        typer.echo(e)
+        except ValueError as e:
+            typer.echo(e)

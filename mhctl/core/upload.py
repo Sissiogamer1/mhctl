@@ -5,8 +5,6 @@ def upload_pomf(file: str, provider: str):
     file_path = Path(file)
     from .settings import provider_info
     provider_info = provider_info(provider)
-    print("OUTPUT provider_info")
-    print(provider_info)
     try:
         if not file_path.exists:
             # REWRITE BETTER TEXT
@@ -26,7 +24,6 @@ def upload_pomf(file: str, provider: str):
                 if xxh3_hash != temp_response["files"][0]["hash"]:
                     # MODIFICA QUESTO E MIGLIORA IL MESSAGGIO DI ERRORE !
                     raise RuntimeError(f"Errore dell'hash")
-                print(f"HASH CALC0LATO:\n{xxh3_hash}")
                 # Caricamento nel database sql
                 from .save import save_uguu
                 save_uguu(
