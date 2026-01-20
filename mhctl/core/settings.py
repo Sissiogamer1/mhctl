@@ -12,18 +12,6 @@ def list_providers():
     for contentkey in content.keys():
         print(contentkey)
 
-def provider_info2(name: str):
-    for key, value, obj in content.walk_keys():
-        print("Key:")
-        print(key)
-        print("Value:")
-        print(value)
-        print("Obj:")
-        print(obj)
-        print("test")
-        print(str(key))
-
-# REWRITE THIS!!!
 def provider_info(provider_name: str):
     for contentkey in content.keys():
         provider_str = str(contentkey)
