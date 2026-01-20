@@ -28,10 +28,7 @@ def provider_info(provider_name: str):
     for contentkey in content.keys():
         provider_str = str(contentkey)
         if provider_name in provider_str:
-            test = content[contentkey]
-            o_endpoint = str(test["endpoint"])
-            o_maxsize = str(test["max_size"])
             print(f"Provider name: {provider_name}")
-            print(f"Endpoint: {o_endpoint}")
-            print(f"Max upload filesize: {o_maxsize} bytes")
-            return provider_name, o_endpoint, o_maxsize
+            print(f"Endpoint: {content["uguu.se"]["endpoint"]}")
+            print(f"Max upload filesize: {content["uguu.se"]["max_size"]} bytes")
+            return provider_name, content["uguu.se"]["endpoint"], content["uguu.se"]["endpoint"]
