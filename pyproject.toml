@@ -3,7 +3,10 @@ name = "mhctl"
 version = "0.0.1"
 dependencies = [
     "typer",
-    "yamlium"
+    "yamlium",
+    "pathlib",
+    "httpx",
+    "xxhash"
 ]
 requires-python = ">= 3.9"
 [project.optional-dependencies]

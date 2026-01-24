@@ -1,6 +1,5 @@
 import typer
 from .core import settings # type: ignore
-import httpx
 
 __version__ = "0.0.1"
 
@@ -18,7 +17,7 @@ for func_name in funcs_names:
 
 def version_callback(value: bool):
     if value:
-        typer.echo(f"Placeholder header\nVersion 0.0.1\nRelease date: 20/01/2026")
+        typer.echo(f"Placeholder header\nVersion 0.0.1\nRelease date: 24/01/2026")
         raise typer.Exit()
 
 @app.callback()
