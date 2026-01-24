@@ -38,19 +38,27 @@ def upload(
         file: str,
         provider: str = typer.Argument(None, help="Provider (default from config)"),
 ):
-    if provider:
-        try:
-            from .runtime.internal import is_provider_supported
-            provider_supported = is_provider_supported(provider)
-        except ValueError as e:
-            typer.echo(e)
-    elif provider is None:
-        try:
-            from .runtime.internal import get_default_provider
-            provider = get_default_provider()
-        except ValueError as e:
-            typer.echo(e)
+#    if provider:
+        #try:
+            #from .runtime.internal import is_provider_supported
+            #provider_supported = is_provider_supported(provider)
+        #except ValueError as e:
+            #typer.echo(e)
+    #elif provider is None:
+        #try:
+            #from .runtime.internal import get_default_provider
+            #provider = get_default_provider()
+        #except ValueError as e:
+            #typer.echo(e)
     if provider == "uguu.se":
+        try:
+            from .core.upload import upload_uguu
+            response = upload_uguu(file, provider)
+            typer.echo(response)
+
+        except ValueError as e:
+            typer.echo(e)
+    if provider == "pomf.lain.la":
         try:
             from .core.upload import upload_pomf
             response = upload_pomf(file, provider)
@@ -58,3 +66,4 @@ def upload(
 
         except ValueError as e:
             typer.echo(e)
+            

@@ -12,6 +12,10 @@ def get_xxh3(f: str):
     import xxhash
     return xxhash.xxh3_64_hexdigest(f.read())
 
+def get_sha1(f: str):
+    import hashlib
+    return hashlib.sha1(f.read()).hexdigest()
+
 def get_timestamp():
     from datetime import datetime
     return datetime.now()

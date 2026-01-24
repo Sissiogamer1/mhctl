@@ -17,6 +17,6 @@ def provider_info(provider_name: str):
         provider_str = str(contentkey)
         if provider_name in provider_str:
             print(f"Provider name: {provider_name}")
-            print(f"Endpoint: {content["uguu.se"]["endpoint"]}")
-            print(f"Max upload filesize: {content["uguu.se"]["max_size"]} bytes")
-            return provider_name, content["uguu.se"]["endpoint"], content["uguu.se"]["max_size"]
+            print(f"Endpoint: {content[provider_name]["endpoint"]}")
+            print(f"Max upload filesize: {content[provider_name]["max_size"]} bytes")
+            return provider_name, content[provider_name]["endpoint"],content[provider_name]["max_size"]
