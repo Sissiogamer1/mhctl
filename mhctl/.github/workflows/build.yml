@@ -1,0 +1,55 @@
+name: Build mhctl
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build_linux:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install nuitka httpx xxhash typer yamlium
+      - name: Build
+        run: |
+          python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl --jobs=4 --remove-output mhctl/cli.py
+      - name: Copy data
+        run: |
+          cp -r mhctl/config mhctl.dist/config
+          cp -r mhctl/data mhctl.dist/data
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: mhctl-linux
+          path: mhctl.dist 
+
+  build_windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'
+      - name: Install dependencies
+        run: |
+          pip install nuitka httpx xxhash typer yamlium
+      - name: Build
+        run: |
+          python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl.exe --jobs=4 --remove-output mhctl/cli.py
+      - name: Copy data
+        run: |
+          Copy-Item -Recurse -Force mhctl\config mhctl.dist\config
+          Copy-Item -Recurse -Force mhctl\data mhctl.dist\data
+      - name: Upload
+        uses: actions/upload-artifact@v3
+        with:
+          name: mhctl-windows
+          path: mhctl.dist
