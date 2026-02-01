@@ -21,6 +21,8 @@ jobs:
       - name: Build
         run: |
           python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl --jobs=4 --remove-output mhctl/cli.py
+      - name: Rename dist folder
+        run: mv cli.dist mhctl.dist
       - name: Copy data
         run: |
           cp -r mhctl/config mhctl.dist/config
@@ -29,7 +31,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: mhctl-linux
-          path: mhctl.dist 
+          path: mhctl.dist
 
   build_windows:
     runs-on: windows-latest
@@ -44,6 +46,8 @@ jobs:
       - name: Build
         run: |
           python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl.exe --jobs=4 --remove-output mhctl/cli.py
+      - name: Rename dist folder
+        run: Move-Item -Path cli.dist -Destination mhctl.dist
       - name: Copy data
         run: |
           Copy-Item -Recurse -Force mhctl\config mhctl.dist\config
