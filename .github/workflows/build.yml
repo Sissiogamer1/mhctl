@@ -18,9 +18,19 @@ jobs:
       - name: Install dependencies
         run: |
           pip install nuitka httpx xxhash typer yamlium
+          pip install .
       - name: Build
         run: |
-          python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl --jobs=4 --remove-output mhctl/cli.py
+          python -m nuitka \
+            --standalone \
+            --lto=yes \
+            --enable-plugin=anti-bloat \
+            --python-flag=-O \
+            --include-package=mhctl
+            --output-filename=mhctl \
+            --jobs=4 \
+            --remove-output \
+            mhctl/cli.py
       - name: Rename dist folder
         run: mv cli.dist mhctl.dist
       - name: Copy data
