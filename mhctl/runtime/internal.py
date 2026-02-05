@@ -1,9 +1,9 @@
 def get_default_provider():
-    from ..core.settings import content
+    from mhctl.core.settings import content
     return content["default"]
 
 def is_provider_supported(provider: str):
-    from ..core.settings import content
+    from mhctl.core.settings import content
     if provider not in content.keys():
         raise ValueError(f"{provider} is not supported by mhctl\nPlease try again with a different provider")
     return True
