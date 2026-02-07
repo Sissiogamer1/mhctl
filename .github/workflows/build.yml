@@ -22,7 +22,7 @@ jobs:
         run: |
           python -m nuitka \
             --onefile \
-            --lto=yes \
+            --lto=no \
             --enable-plugin=anti-bloat \
             --python-flag=-O \
             --include-package=mhctl \
@@ -38,8 +38,8 @@ jobs:
         run: mv build/mhctl.dist mhctl.dist
       - name: Copy data
         run: |
-          cp -r mhctl/config mhctl.dist/config
-          cp -r mhctl/data mhctl.dist/data
+          cp -r mhctl/config build/
+          cp -r mhctl/data build/
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
@@ -60,7 +60,7 @@ jobs:
         run: |
           python -m nuitka `
             --onefile `
-            --lto=yes `
+            --lto=no `
             --enable-plugin=anti-bloat `
             --python-flag=-O `
             --include-package=mhctl `
