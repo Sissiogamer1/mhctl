@@ -34,8 +34,6 @@ jobs:
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
             mhctl/__main__.py
-      - name: Rename dist folder
-        run: mv build/mhctl.dist mhctl.dist
       - name: Copy data
         run: |
           cp -r mhctl/config build/
@@ -71,8 +69,6 @@ jobs:
             --remove-output `
             --follow-imports `
             mhctl/__main__.py
-      - name: Rename dist folder
-        run: Move-Item -Path build/mhctl.dist -Destination mhctl.dist
       - name: Copy data
         run: |
           Copy-Item -Recurse -Force mhctl\config build\
