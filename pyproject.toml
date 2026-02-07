@@ -9,19 +9,9 @@ dependencies = [
     "xxhash"
 ]
 requires-python = ">= 3.9"
-
-[build-system]
-requires = ["setuptools>=61.0", "wheel"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["."]
-include = ["core*", "config*", "runtime*", "providers*"]
-exclude = ["data*"]
-
 [project.optional-dependencies]
 function1 = []
 function2 = []
 
 [project.scripts]
-mhctl = "cli:app"
+mhctl = "mhctl.cli:app"

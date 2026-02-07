@@ -3,7 +3,7 @@ import httpx
 
 def upload_uguu(file: str, provider: str):
     file_path = Path(file)
-    from mhctl.core.settings import provider_info
+    from .settings import provider_info
     provider_info = provider_info(provider)
     try:
         if not file_path.exists:
@@ -13,7 +13,7 @@ def upload_uguu(file: str, provider: str):
         if file_size > int(str(provider_info[2])):
             raise ValueError(f"{file} is too big")
         with open(file_path, "rb") as f:
-            from mhctl.runtime.internal import get_xxh3
+            from ..runtime.internal import get_xxh3
             xxh3_hash = get_xxh3(f)
             with httpx.Client(timeout=30.0) as client:
                 files = {"files[]": (file_path.name, f)}
@@ -38,7 +38,7 @@ def upload_uguu(file: str, provider: str):
     
 def upload_pomf(file: str, provider: str):
     file_path = Path(file)
-    from mhctl.core.settings import provider_info
+    from .settings import provider_info
     provider_info = provider_info(provider)
     try:
         if not file_path.exists:
@@ -48,7 +48,7 @@ def upload_pomf(file: str, provider: str):
         if file_size > int(str(provider_info[2])):
             raise ValueError(f"{file} is too big")
         with open(file_path, "rb") as f:
-            from mhctl.runtime.internal import get_sha1
+            from ..runtime.internal import get_sha1
             sha1_hash = get_sha1(f)
             with httpx.Client(timeout=30.0) as client:
                 files = {"files[]": (file_path.name, f)}
@@ -60,7 +60,7 @@ def upload_pomf(file: str, provider: str):
                     # MODIFICA QUESTO E MIGLIORA IL MESSAGGIO DI ERRORE !
                     raise RuntimeError(f"Errore dell'hash")
                 # Caricamento nel database sql
-                from mhctl.core.save import save_uguu
+                from .save import save_uguu
                 save_uguu(
                     file_path.name,
                     temp_response["files"][0]["url"],

@@ -12,6 +12,7 @@ def save_uguu(original_filename: str, url: str, provider: str, size: str):
         (original_filename, url, provider, datetime.now().isoformat(), size)
         )
     except sqlite3.IntegrityError:
+        # L'URL esiste già (violazione del constraint UNIQUE)
         raise ValueError(f"URL already exists in database: {url}")
     finally:
         conn.commit()

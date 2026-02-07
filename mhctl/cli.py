@@ -1,5 +1,5 @@
 import typer
-from mhctl.core import settings # type: ignore
+from .core import settings # type: ignore
 
 __version__ = "0.0.1"
 
