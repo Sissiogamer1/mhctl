@@ -33,7 +33,6 @@ jobs:
             --remove-output \
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
-            --verbose \
             --show-progress \
             mhctl/
       - name: Rename dist folder
@@ -72,7 +71,6 @@ jobs:
             --jobs=4 `
             --remove-output `
             --follow-imports `
-            --verbose `
             --show-progress `
             mhctl/
       - name: Rename dist folder
