@@ -18,12 +18,24 @@ jobs:
       - name: Install dependencies
         run: |
           pip install nuitka httpx xxhash typer yamlium
-          pip install .
       - name: Build
         run: |
-          python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --include-package=mhctl --output-filename=mhctl --jobs=4 --remove-output mhctl/cli.py
+          python -m nuitka \
+            --standalone \
+            --lto=yes \
+            --enable-plugin=anti-bloat \
+            --python-flag=-O \
+            --include-package=mhctl \
+            --include-package-data=mhctl \
+            --output-dir=build \
+            --output-filename=mhctl \
+            --jobs=4 \
+            --remove-output \
+            --follow-imports \
+            --module-parameter=use-stdlib-static-typing=no \
+            mhctl/
       - name: Rename dist folder
-        run: mv cli.dist mhctl.dist
+        run: mv build/mhctl.dist mhctl.dist
       - name: Copy data
         run: |
           cp -r mhctl/config mhctl.dist/config
@@ -46,9 +58,21 @@ jobs:
           pip install nuitka httpx xxhash typer yamlium
       - name: Build
         run: |
-          python -m nuitka --standalone --lto=yes --enable-plugin=anti-bloat --python-flag=-O --output-filename=mhctl.exe --jobs=4 --remove-output mhctl/cli.py
+          python -m nuitka `
+            --standalone `
+            --lto=yes `
+            --enable-plugin=anti-bloat `
+            --python-flag=-O `
+            --include-package=mhctl `
+            --include-package-data=mhctl `
+            --output-dir=build `
+            --output-filename=mhctl.exe `
+            --jobs=4 `
+            --remove-output `
+            --follow-imports `
+            mhctl/
       - name: Rename dist folder
-        run: Move-Item -Path cli.dist -Destination mhctl.dist
+        run: Move-Item -Path build/mhctl.dist -Destination mhctl.dist
       - name: Copy data
         run: |
           Copy-Item -Recurse -Force mhctl\config mhctl.dist\config
