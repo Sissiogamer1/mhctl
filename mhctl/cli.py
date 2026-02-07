@@ -3,25 +3,25 @@ from .core import settings # type: ignore
 
 __version__ = "0.0.1"
 
-app = typer.Typer(
+main = typer.Typer(
     help="Help text placeholder"
 )
-settings_app = typer.Typer()
-app.add_typer(settings_app, name="settings")
+settings_main = typer.Typer()
+main.add_typer(settings_main, name="settings")
 
 funcs_names = ["list_providers", "provider_info"]
 
 for func_name in funcs_names:
     func = getattr(settings, func_name)
-    settings_app.command(name=func_name)(func)
+    settings_main.command(name=func_name)(func)
 
 def version_callback(value: bool):
     if value:
         typer.echo(f"Placeholder header\nVersion 0.0.1\nRelease date: 24/01/2026")
         raise typer.Exit()
 
-@app.callback()
-def main(
+@main.callback()
+def app(
     version: bool = typer.Option(
         None, 
         "--version", 
@@ -32,7 +32,7 @@ def main(
 ):
     pass
 
-@app.command()
+@main.command()
 def upload(
         file: str,
         provider: str = typer.Argument(None, help="Provider (default from config)"),

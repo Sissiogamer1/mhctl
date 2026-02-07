@@ -33,6 +33,8 @@ jobs:
             --remove-output \
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
+            --verbose \
+            --show-progress \
             mhctl/
       - name: Rename dist folder
         run: mv build/mhctl.dist mhctl.dist
@@ -70,6 +72,8 @@ jobs:
             --jobs=4 `
             --remove-output `
             --follow-imports `
+            --verbose `
+            --show-progress `
             mhctl/
       - name: Rename dist folder
         run: Move-Item -Path build/mhctl.dist -Destination mhctl.dist

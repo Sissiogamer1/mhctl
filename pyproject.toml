@@ -14,4 +14,4 @@ function1 = []
 function2 = []
 
 [project.scripts]
-mhctl = "mhctl.cli:app"
+mhctl = "mhctl.cli:main"
