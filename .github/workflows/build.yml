@@ -75,8 +75,8 @@ jobs:
         run: Move-Item -Path build/mhctl.dist -Destination mhctl.dist
       - name: Copy data
         run: |
-          Copy-Item -Recurse -Force mhctl\config mhctl.dist\config
-          Copy-Item -Recurse -Force mhctl\data mhctl.dist\data
+          Copy-Item -Recurse -Force mhctl\config build\
+          Copy-Item -Recurse -Force mhctl\data build\
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
