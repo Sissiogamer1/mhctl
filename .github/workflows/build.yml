@@ -34,15 +34,17 @@ jobs:
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
             mhctl/__main__.py
-      - name: Copy data
+      - name: Create distribution directory
         run: |
-          cp -r mhctl/config build/
-          cp -r mhctl/data build/
+          mkdir -p dist/mhctl
+          cp build/mhctl dist/mhctl/
+          cp -r mhctl/config dist/mhctl/
+          cp -r mhctl/data dist/mhctl/
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: mhctl-linux
-          path: mhctl.dist
+          path: dist/mhctl/
 
   build_windows:
     runs-on: windows-latest
@@ -69,12 +71,14 @@ jobs:
             --remove-output `
             --follow-imports `
             mhctl/__main__.py
-      - name: Copy data
+      - name: Create distribution directory
         run: |
-          Copy-Item -Recurse -Force mhctl\config build\
-          Copy-Item -Recurse -Force mhctl\data build\
+          New-Item -ItemType Directory -Force -Path dist\mhctl
+          Copy-Item build\mhctl.exe dist\mhctl\
+          Copy-Item -Recurse -Force mhctl\config dist\mhctl\
+          Copy-Item -Recurse -Force mhctl\data dist\mhctl\
       - name: Upload
         uses: actions/upload-artifact@v4
         with:
           name: mhctl-windows
-          path: mhctl.dist
+          path: dist\mhctl\
