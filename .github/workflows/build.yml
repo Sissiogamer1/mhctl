@@ -25,6 +25,7 @@ jobs:
             --lto=no \
             --enable-plugin=anti-bloat \
             --python-flag=-O \
+            --python-flag=-m \
             --include-package=mhctl \
             --include-package-data=mhctl \
             --output-dir=build \
@@ -33,12 +34,11 @@ jobs:
             --remove-output \
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
-            --include-module=mhctl \
-            mhctl/
+            mhctl
       - name: Copy data
         run: |
           mkdir -p dist/mhctl
-          cp build/mhctl dist/mhctl/
+          for f in build/mhctl*; do cp "$f" dist/mhctl/mhctl; break; done
           cp -r mhctl/config dist/mhctl/
           cp -r mhctl/data dist/mhctl/
       - name: Upload
@@ -64,15 +64,15 @@ jobs:
             --lto=no `
             --enable-plugin=anti-bloat `
             --python-flag=-O `
+            --python-flag=-m `
             --include-package=mhctl `
             --include-package-data=mhctl `
             --output-dir=build `
-            --output-filename=mhctl.exe `
+            --output-filename=mhctl `
             --jobs=4 `
             --remove-output `
             --follow-imports `
-            --include-modules=mhctl `
-            mhctl/
+            mhctl
       - name: Copy data
         run: |
           New-Item -ItemType Directory -Force -Path dist\mhctl
