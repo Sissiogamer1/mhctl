@@ -34,7 +34,7 @@ jobs:
             --follow-imports \
             --module-parameter=use-stdlib-static-typing=no \
             --include-module=mhctl \
-            mhctl/__init__.py
+            mhctl/
       - name: Copy data
         run: |
           mkdir -p dist/mhctl
@@ -72,7 +72,7 @@ jobs:
             --remove-output `
             --follow-imports `
             --include-modules=mhctl `
-            mhctl/__init__.py
+            mhctl/
       - name: Copy data
         run: |
           New-Item -ItemType Directory -Force -Path dist\mhctl
