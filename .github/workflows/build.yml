@@ -72,6 +72,7 @@ jobs:
             --jobs=4 `
             --remove-output `
             --follow-imports `
+            --assume-yes-for-downloads
             mhctl
       - name: Copy data
         run: |
