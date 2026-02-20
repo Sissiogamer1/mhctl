@@ -58,22 +58,23 @@ jobs:
         run: |
           pip install nuitka httpx xxhash typer yamlium
       - name: Build
-        shell: cmd
+        shell: bash
         run: |
-          python -m nuitka `
-            --onefile `
-            --lto=no `
-            --enable-plugin=anti-bloat `
-            --python-flag=-O `
-            --python-flag=-m `
-            --include-package=mhctl `
-            --include-package-data=mhctl `
-            --output-dir=build `
-            --output-filename=mhctl `
-            --jobs=4 `
-            --remove-output `
-            --follow-imports `
-            --assume-yes-for-downloads
+          python -m nuitka \
+            --onefile \
+            --lto=no \
+            --enable-plugin=anti-bloat \
+            --python-flag=-O \
+            --python-flag=-m \
+            --include-package=mhctl \
+            --include-package-data=mhctl \
+            --output-dir=build \
+            --output-filename=mhctl \
+            --jobs=4 \
+            --remove-output \
+            --follow-imports \
+            --module-parameter=use-stdlib-static-typing=no \
+            --assume-yes-for-downloads \
             mhctl
       - name: Copy data
         run: |
