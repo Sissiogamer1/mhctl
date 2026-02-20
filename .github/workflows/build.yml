@@ -58,6 +58,7 @@ jobs:
         run: |
           pip install nuitka httpx xxhash typer yamlium
       - name: Build
+        shell: cmd
         run: |
           python -m nuitka `
             --onefile `
